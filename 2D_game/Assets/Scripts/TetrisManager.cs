@@ -28,4 +28,24 @@ public class TetrisManager : MonoBehaviour
 
     [Header("這是結束音效")]
     public AudioClip oversound;
+
+
+    
+
+    private void BLOCK()
+    {
+        print("生成俄羅斯方塊");
+    }
+
+
+
+    public int Pluscore(int score)
+    {
+        score += 10;
+        return 50;
+        
+    }
+
+
+
 }

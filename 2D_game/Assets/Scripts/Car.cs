@@ -2,6 +2,7 @@
 
 public class Car : MonoBehaviour
 {
+    #region 欄位
     //: 單行註解
     // 數值 = 欄位(Field) 
     // 語法如下:
@@ -73,7 +74,9 @@ public class Car : MonoBehaviour
     // 6. 元件：屬性面板上的粗體字
     public Transform tra;
     public Camera cam;
+    #endregion
 
+    #region 事件
     //事件：開始事件 - 撥放後執行一次
 
     private void Start()
@@ -87,5 +90,90 @@ public class Car : MonoBehaviour
         //設定 欄位 (修改資料)
         weight = 1.3f;
         haswindow = false;
+
+        // 呼叫自訂方法
+        // 呼叫方法語法：自訂方法名稱();
+        MethodA();
+        MethodA();
+
+        // 區域變數
+        // 類型 區域變數名稱 指定 值
+        // 僅限於此區塊使用 (大括號)
+        int intA = MethodB();
+        print("傳回整數：" + intA);
+
+        float pi = PI();
+        print("拍：" + pi);
+
+        Vector3 v371 = V371();
+        print("三維向量 371" + v371);
+
+        MethodC(7);
+        MethodC(100);
+
+        float b = BMI(80, 1.75f);
+        print("我的BMI" + b);
+
+        Drive(150);
+        Drive(90);
+        Drive(10, "後方");
     }
+    #endregion
+
+
+    #region 方法
+    // 欄位語法：
+    // 修飾詞 類型 欄位名稱 指定 值
+
+    // 方法語法：
+    // 修飾詞 傳回類型 方法名稱 () {}
+    //無傳回類型 void - 沒有任何傳回資料
+    //自訂方法
+    // ※ 必須被呼叫才會執行
+
+    private void MethodA()
+    {
+        print("hello~ I'am MethodA");
+    }
+    
+    // 如果不是無傳回，必須使用關鍵字「return」傳回，且必須在 return 後加上傳回類型的資料
+    private int MethodB()
+    {
+        return 123;
+    }
+
+    private float PI()
+    {
+        return 3.14f;
+    }
+
+    private Vector3 V371()
+    {
+        return new Vector3(1, 2, 3);
+    }
+
+    private void MethodC(int number)
+    {
+        number += 10;
+        print("累加後的數字" + number);
+    }
+
+    //參數數量無上限(但一般不會用到太多，參數10份就算很多了)
+    private float BMI(float w, float h)
+    {
+        float bmi = w / (h * h);
+        return bmi;
+    }
+
+    // 參數的預設值
+    // 語法：參數類型 參數名稱 指定 值
+    //必須放在右邊
+
+    private void Drive(int speed, string direction = "前方")
+    {
+        print("時速" + speed);
+        print("方向" + direction);
+    }
+
+    #endregion
 }
