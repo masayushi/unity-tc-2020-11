@@ -2,6 +2,7 @@
 
 public class TetrisManager : MonoBehaviour
 {
+    #region 註釋、範圍、修飾詞 類型 欄位名稱...等初階練習 1 
     [Header("這是掉落時間"), Range(0.1f,3)]
     public float droptime = 1.5f;
 
@@ -29,9 +30,11 @@ public class TetrisManager : MonoBehaviour
     [Header("這是結束音效")]
     public AudioClip oversound;
 
+    #endregion
 
-    
 
+
+    #region 方法語法練習 練習 2
     private void BLOCK()
     {
         print("生成俄羅斯方塊");
@@ -41,11 +44,27 @@ public class TetrisManager : MonoBehaviour
 
     public int Pluscore(int score)
     {
-        score += 10;
-        return 50;
-        
+        return 5;
     }
 
+    private void Gametime()
+    {
+        print("遊戲時間");
+    }
 
+    private void Gameover()
+    {
+        print("遊戲結束");
+    }
 
+    public void Restart()
+    {
+        print("重新遊戲");
+    }
+
+    public void Nextgame()
+    {
+        print("離開遊戲");
+    }
+    #endregion
 }

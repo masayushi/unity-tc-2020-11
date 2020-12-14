@@ -98,7 +98,7 @@ public class Car : MonoBehaviour
 
         // 區域變數
         // 類型 區域變數名稱 指定 值
-        // 僅限於此區塊使用 (大括號)
+        // 僅限於此區塊(大括號)中使用
         int intA = MethodB();
         print("傳回整數：" + intA);
 
