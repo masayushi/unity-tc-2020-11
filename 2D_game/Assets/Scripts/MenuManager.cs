@@ -3,13 +3,19 @@ using UnityEngine;
 
 public class MenuManager : MonoBehaviour
 {
+    /// <summary>
+    /// 開始遊戲
+    /// </summary>
     public void Gamestart()
     {
-        print("開始遊戲");
+       
     }
 
+    /// <summary>
+    /// 離開遊戲
+    /// </summary>
     public void Nextgame()
     {
-        print("離開遊戲");
+       
     }
 }

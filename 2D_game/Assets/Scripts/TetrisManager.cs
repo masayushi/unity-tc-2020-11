@@ -35,36 +35,54 @@ public class TetrisManager : MonoBehaviour
 
 
     #region 方法語法練習 練習 2
+
+    /// <summary>
+    /// 生成俄羅斯方塊
+    /// </summary>
     private void BLOCK()
     {
-        print("生成俄羅斯方塊");
+       
     }
 
-
-
-    public int Pluscore(int score)
+    /// <summary>
+    /// 添加分數
+    /// </summary>
+    /// <param name="score">整數</param>
+    public void Pluscore(int score)
     {
-        return 5;
+   
     }
 
+    /// <summary>
+    /// 遊戲時間
+    /// </summary>
     private void Gametime()
     {
-        print("遊戲時間");
+    
     }
 
+    /// <summary>
+    /// 遊戲結束
+    /// </summary>
     private void Gameover()
     {
-        print("遊戲結束");
+      
     }
 
+    /// <summary>
+    /// 重新遊戲
+    /// </summary>
     public void Restart()
     {
-        print("重新遊戲");
+
     }
 
+    /// <summary>
+    /// 離開遊戲
+    /// </summary>
     public void Nextgame()
     {
-        print("離開遊戲");
+ 
     }
     #endregion
 }
