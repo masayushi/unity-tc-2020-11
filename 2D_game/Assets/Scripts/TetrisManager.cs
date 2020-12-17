@@ -35,6 +35,9 @@ public class TetrisManager : MonoBehaviour
 
     [Header("下一顆俄羅斯方塊區域")]
     public Transform traNaxtAreas;
+
+    [Header("畫布")]
+    public Transform traCanvas;
     #endregion
 
     /// <summary>
@@ -64,14 +67,25 @@ public class TetrisManager : MonoBehaviour
 
     /// <summary>
     /// 開始遊戲
+    /// 1. 生成的俄羅斯方塊要放在正確位置
+    /// 2.上一次俄羅斯方塊要被隱藏
+    /// 3.隨機取得下一個
     /// </summary>
     public void StartGame()
     {
-
-        //保存上一次的俄羅斯方塊
+        // 1. 生成的俄羅斯方塊要放在正確位置
+        // 保存上一次的俄羅斯方塊
         GameObject tetris = traNaxtAreas.GetChild(indexNext).gameObject;
-        //生成物件(物件)
-        Instantiate(tetris);
+        // 生成物件(物件,父物件)
+        GameObject current = Instantiate(tetris,traCanvas);
+        // <T>泛型 - 意為所有類型
+        current.GetComponent<RectTransform>().anchoredPosition = new Vector2(-10, 225);
+
+        // 2.上一次俄羅斯方塊要被隱藏
+        tetris.SetActive(false);
+
+        // 3.隨機取得下一個
+        BLOCK();
     }
 
 

@@ -1194,12 +1194,12 @@ PrefabInstance:
     - target: {fileID: 5997081264480266134, guid: 338bc8df46d18b94aa34b42c70cdd0f1,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 45.5
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 5997081264480266134, guid: 338bc8df46d18b94aa34b42c70cdd0f1,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -60.5
+      value: -56
       objectReference: {fileID: 0}
     - target: {fileID: 5997081264480266134, guid: 338bc8df46d18b94aa34b42c70cdd0f1,
         type: 3}
@@ -1301,6 +1301,7 @@ MonoBehaviour:
   soundClear: {fileID: 0}
   soundLose: {fileID: 0}
   traNaxtAreas: {fileID: 1309823608}
+  traCanvas: {fileID: 1302398846}
   indexNext: 0
 --- !u!4 &567674432
 Transform:
