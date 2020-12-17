@@ -9,7 +9,7 @@ public class MenuManager : MonoBehaviour
     /// </summary>
     public void Gamestart()
     {
-        SceneManager.LoadScene("場景");
+        SceneManager.LoadScene("遊戲主畫面");
     }
 
     /// <summary>
