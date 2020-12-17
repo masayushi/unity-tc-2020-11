@@ -4,6 +4,13 @@ using UnityEngine.SceneManagement;
 
 public class MenuManager : MonoBehaviour
 {
+
+    /// public 公開，允許按鈕呼叫
+    public void DelayStartGame()
+    {
+        ///延遲呼叫("方法名稱"，延遲秒數
+    }
+
     /// <summary>
     /// 開始遊戲
     /// </summary>
