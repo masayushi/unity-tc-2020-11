@@ -11,7 +11,7 @@ public class APIStatic : MonoBehaviour
     /// </summary>
    private void Start()
     {
-        //靜態屬性的取得
+        //靜態屬性(Static Properties)的取得
         //語法：類別名稱.靜態屬性名稱
         print(Mathf.PI);
         print(Mathf.Infinity);
