@@ -2,7 +2,7 @@
 
 public class APINoStatic : MonoBehaviour
 {
-    // 使用一般屬性
+    // 一般屬性的使用方式
     // 類型  欄位屬性
     public Transform traA;
     public Transform traB;
@@ -33,7 +33,7 @@ public class APINoStatic : MonoBehaviour
         {
             // 一般方法的使用，語法如下
             // 語法：類型欄位名稱 的 方法(對應的參數)
-            myTra.Rotate(0, 0, 10);
+            myTra.Rotate(0, 0, 1);
             myTra.Translate(1, 0, 0);
         }
 }
