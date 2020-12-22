@@ -3,7 +3,7 @@
 public class TetrisManager : MonoBehaviour
 {
     #region 註釋、範圍、修飾詞 類型 欄位名稱...等初階練習 1 
-    [Header("這是掉落時間"), Range(0.1f,3)]
+    [Header("這是掉落時間"), Range(0.1f, 3)]
     public float droptime = 1.5f;
 
     [Header("這是目前分數")]
@@ -43,11 +43,76 @@ public class TetrisManager : MonoBehaviour
     /// <summary>
     /// 下一顆俄羅斯方塊編號
     /// </summary>
-    public int indexNext;
+    private int indexNext;
 
+    /// <summary>
+    /// 目前俄羅斯方塊
+    /// </summary>
+    private RectTransform currentTeteris;
+
+    /// <summary>
+    /// 計時器
+    /// </summary>
+    private float timer;
+
+    /// <summary>
+    /// 開始事件：開始時執行一次
+    /// </summary>
     private void Start()
     {
         BLOCK();
+    }
+
+    /// <summary>
+    /// 更新事件：每秒執行約60次
+    /// </summary>
+    private void Update()
+    {
+        ControlTertis();
+    }
+
+    /// <summary>
+    /// 控制俄羅斯方塊
+    /// </summary>
+    private void ControlTertis()
+    {
+        //如果 已經有 目前的俄羅斯方塊
+        if (currentTeteris)
+        {
+            timer += Time.deltaTime;  //計時器 累加 一幀的時間 - 累加時間
+
+            if (timer >= droptime)
+            {
+                timer = 0;
+                currentTeteris.anchoredPosition -= new Vector2(0, 40);
+            }
+
+            // 按下 D 往右 40 或者 按下 -> 往右40
+            // KeyCode 列舉 (下拉式選單)
+            if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow))
+            {
+                currentTeteris.anchoredPosition += new Vector2(40, 0);
+            }
+
+            // 按下 A 往左 -40 或者 按下 <- 往左40
+            if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow))
+            {
+                currentTeteris.anchoredPosition += new Vector2(-40, 0);
+            }
+
+            // 按下 W 逆時針轉90度
+            if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
+            {
+                // 屬性面板上面的 rotation 必須要用 eulerAngles 來做控制
+                currentTeteris.eulerAngles += new Vector3(0, 0, 90);
+            }
+            // 按下 S 往下 40 或者按下 下 往下40
+            if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
+            {
+                currentTeteris.anchoredPosition += new Vector2(0, -40);
+            }
+        }
+
     }
 
     #region 方法語法練習 練習 2
@@ -77,7 +142,7 @@ public class TetrisManager : MonoBehaviour
         // 保存上一次的俄羅斯方塊
         GameObject tetris = traNaxtAreas.GetChild(indexNext).gameObject;
         // 生成物件(物件,父物件)
-        GameObject current = Instantiate(tetris,traCanvas);
+        GameObject current = Instantiate(tetris, traCanvas);
         // <T>泛型 - 意為所有類型
         current.GetComponent<RectTransform>().anchoredPosition = new Vector2(-10, 225);
 
@@ -86,6 +151,8 @@ public class TetrisManager : MonoBehaviour
 
         // 3.隨機取得下一個
         BLOCK();
+
+        currentTeteris = current.GetComponent<RectTransform>();
     }
 
 
@@ -95,7 +162,7 @@ public class TetrisManager : MonoBehaviour
     /// <param name="score">要添加的分數</param>
     public void Pluscore(int score)
     {
-   
+
     }
 
     /// <summary>
@@ -103,7 +170,7 @@ public class TetrisManager : MonoBehaviour
     /// </summary>
     private void Gametime()
     {
-    
+
     }
 
     /// <summary>
@@ -111,7 +178,7 @@ public class TetrisManager : MonoBehaviour
     /// </summary>
     private void Gameover()
     {
-      
+
     }
 
     /// <summary>
@@ -127,7 +194,7 @@ public class TetrisManager : MonoBehaviour
     /// </summary>
     public void Nextgame()
     {
- 
+
     }
     #endregion
 }
