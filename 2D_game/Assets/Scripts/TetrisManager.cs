@@ -86,18 +86,27 @@ public class TetrisManager : MonoBehaviour
                 timer = 0;
                 currentTeteris.anchoredPosition -= new Vector2(0, 40);
             }
+            #region 控制俄羅斯方塊的 左右、旋轉與加速
 
-            // 按下 D 往右 40 或者 按下 -> 往右40
-            // KeyCode 列舉 (下拉式選單)
-            if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow))
+            //如果 X座標 小於 230 才能向右移動
+            if (currentTeteris.anchoredPosition.x < 230)
             {
-                currentTeteris.anchoredPosition += new Vector2(40, 0);
+                // 按下 D 往右 40 或者 按下 -> 往右40
+                // KeyCode 列舉 (下拉式選單)
+                // || 或者
+                if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow))
+                {
+                    currentTeteris.anchoredPosition += new Vector2(20, 0);
+                }
             }
 
             // 按下 A 往左 -40 或者 按下 <- 往左40
-            if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow))
+            if (currentTeteris.anchoredPosition.x > -210)
             {
-                currentTeteris.anchoredPosition += new Vector2(-40, 0);
+                if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow))
+                {
+                    currentTeteris.anchoredPosition -= new Vector2(20, 0);
+                }
             }
 
             // 按下 W 逆時針轉90度
@@ -106,13 +115,26 @@ public class TetrisManager : MonoBehaviour
                 // 屬性面板上面的 rotation 必須要用 eulerAngles 來做控制
                 currentTeteris.eulerAngles += new Vector3(0, 0, 90);
             }
-            // 按下 S 往下 40 或者按下 下 往下40
-            if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
+
+            // 如果按下 S 或者 下 時，方塊落下速度會加速 
+            if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
             {
-                currentTeteris.anchoredPosition += new Vector2(0, -40);
+                droptime = 0.2f;
+            }
+
+            //否則 恢復速度
+            else
+            {
+                droptime = 1.0f;
+            }
+            #endregion
+
+            //如果 目前俄羅斯方塊 Y軸 等於-295 時就 叫下一顆方塊
+            if (currentTeteris.anchoredPosition.y == -295)
+            {
+                StartGame();
             }
         }
-
     }
 
     #region 方法語法練習 練習 2
