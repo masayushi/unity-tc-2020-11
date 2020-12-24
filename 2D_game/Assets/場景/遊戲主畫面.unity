@@ -1302,6 +1302,14 @@ MonoBehaviour:
   soundLose: {fileID: 0}
   traNaxtAreas: {fileID: 1309823608}
   traCanvas: {fileID: 1302398846}
+  posSpawn:
+  - {x: 12, y: 232}
+  - {x: 0, y: 208}
+  - {x: 16, y: 220}
+  - {x: 12, y: 220}
+  - {x: 12, y: 208}
+  - {x: 0, y: 208}
+  - {x: 12, y: 208}
 --- !u!4 &567674432
 Transform:
   m_ObjectHideFlags: 0
@@ -2031,7 +2039,7 @@ GameObject:
   - component: {fileID: 1003896195}
   - component: {fileID: 1003896194}
   - component: {fileID: 1003896196}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: "\u7246\u58C1(\u53F3)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3162,7 +3170,7 @@ GameObject:
   - component: {fileID: 1677202617}
   - component: {fileID: 1677202616}
   - component: {fileID: 1677202618}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: "\u5730\u677F"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4286,7 +4294,7 @@ GameObject:
   - component: {fileID: 2123921793}
   - component: {fileID: 2123921792}
   - component: {fileID: 2123921794}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: "\u7246\u58C1(\u5DE6)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}

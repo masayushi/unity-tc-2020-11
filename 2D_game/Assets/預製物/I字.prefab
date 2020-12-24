@@ -409,6 +409,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5997081264480266134}
+  - component: {fileID: 6015982701372155667}
   m_Layer: 5
   m_Name: "I\u5B57"
   m_TagString: Untagged
@@ -439,3 +440,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &6015982701372155667
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9195316957069848378}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee77d18012b9637468ae43874f4584aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cube0: 0.6
+  cube90: 1.5
+  cube: 1.5
+  wallRight: 0

@@ -38,6 +38,18 @@ public class TetrisManager : MonoBehaviour
 
     [Header("畫布")]
     public Transform traCanvas;
+
+    [Header("生成的起始位置")]
+    public Vector2[] posSpawn =
+    {
+        new Vector2(12, 232),
+        new Vector2(12, 220),
+        new Vector2(16, 220),
+        new Vector2(12 , 220),
+        new Vector2(-12 , 208),
+        new Vector2(0, 208),
+        new Vector2(12, 208),
+    };
     #endregion
 
     /// <summary>
@@ -78,8 +90,8 @@ public class TetrisManager : MonoBehaviour
     {
         //如果 已經有 目前的俄羅斯方塊
         if (currentTeteris)
-        {
-            timer += Time.deltaTime;  //計時器 累加 一幀的時間 - 累加時間
+        {//計時器 累加 一幀的時間 - 累加時間
+            timer += Time.deltaTime;
 
             if (timer >= droptime)
             {
@@ -88,21 +100,28 @@ public class TetrisManager : MonoBehaviour
             }
             #region 控制俄羅斯方塊的 左右、旋轉與加速
 
-            //如果 X座標 小於 230 才能向右移動
-            if (currentTeteris.anchoredPosition.x < 230)
+            Tetris tetris = currentTeteris.GetComponent<Tetris>();
+
+            // 如果 X座標 小於 230 才能向右移動
+            // if (currentTeteris.anchoredPosition.x < 230) 左為另一個方法，是以座標來定
+            //如果 X 座標 沒有碰到右邊牆壁
+            if (!tetris.wallRight)
             {
-                // 按下 D 往右 40 或者 按下 -> 往右40
-                // KeyCode 列舉 (下拉式選單)
-                // || 或者
-                if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow))
                 {
-                    currentTeteris.anchoredPosition += new Vector2(20, 0);
+                    // 按下 D 往右 40 或者 按下 -> 往右40
+                    // KeyCode 列舉 (下拉式選單)
+                    // || 或者
+                    if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow))
+                    {
+                        currentTeteris.anchoredPosition += new Vector2(20, 0);
+                    }
                 }
             }
 
-            // 按下 A 往左 -40 或者 按下 <- 往左40
+            // 如果 X座標 大於 -210 才能向左移動
             if (currentTeteris.anchoredPosition.x > -210)
             {
+            // 按下 A 往左 -40 或者 按下 <- 往左40
                 if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow))
                 {
                     currentTeteris.anchoredPosition -= new Vector2(20, 0);
@@ -164,9 +183,12 @@ public class TetrisManager : MonoBehaviour
         // 保存上一次的俄羅斯方塊
         GameObject tetris = traNaxtAreas.GetChild(indexNext).gameObject;
         // 生成物件(物件,父物件)
+        // 目前俄羅斯方塊 = 生成物件(物件，父物件)
         GameObject current = Instantiate(tetris, traCanvas);
+        // GetComponent<任何元件>()
         // <T>泛型 - 意為所有類型
-        current.GetComponent<RectTransform>().anchoredPosition = new Vector2(-10, 225);
+        // 目前俄羅斯方塊 . 取得元件<介面變形>() . 座標 = 生成座標陣列[編號]
+        current.GetComponent<RectTransform>().anchoredPosition = posSpawn[indexNext];
 
         // 2.上一次俄羅斯方塊要被隱藏
         tetris.SetActive(false);
