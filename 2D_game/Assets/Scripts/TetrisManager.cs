@@ -119,9 +119,9 @@ public class TetrisManager : MonoBehaviour
             }
 
             // 如果 X座標 大於 -210 才能向左移動
-            if (currentTeteris.anchoredPosition.x > -210)
+            // if (currentTeteris.anchoredPosition.x > -210) 左為另一個方法，是以座標來定
             {
-            // 按下 A 往左 -40 或者 按下 <- 往左40
+                // 按下 A 往左 -40 或者 按下 <- 往左40
                 if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow))
                 {
                     currentTeteris.anchoredPosition -= new Vector2(20, 0);
