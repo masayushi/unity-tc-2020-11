@@ -96,7 +96,7 @@ public class TetrisManager : MonoBehaviour
             if (timer >= droptime)
             {
                 timer = 0;
-                currentTeteris.anchoredPosition -= new Vector2(0, 40);
+                currentTeteris.anchoredPosition -= new Vector2(0, 30);
             }
             #region 控制俄羅斯方塊的 左右、旋轉與加速
 
@@ -113,20 +113,22 @@ public class TetrisManager : MonoBehaviour
                     // || 或者
                     if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow))
                     {
-                        currentTeteris.anchoredPosition += new Vector2(20, 0);
+                        currentTeteris.anchoredPosition += new Vector2(30, 0);
                     }
                 }
             }
 
             // 如果 X座標 大於 -210 才能向左移動
             // if (currentTeteris.anchoredPosition.x > -210) 左為另一個方法，是以座標來定
+            if (!tetris.wallLeft)
             {
                 // 按下 A 往左 -40 或者 按下 <- 往左40
                 if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow))
                 {
-                    currentTeteris.anchoredPosition -= new Vector2(20, 0);
+                    currentTeteris.anchoredPosition -= new Vector2(30, 0);
                 }
             }
+
 
             // 按下 W 逆時針轉90度
             if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
@@ -136,10 +138,12 @@ public class TetrisManager : MonoBehaviour
             }
 
             // 如果按下 S 或者 下 時，方塊落下速度會加速 
-            if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
-            {
-                droptime = 0.2f;
-            }
+           
+                if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
+                {
+                    droptime = 0.2f;
+                }
+
 
             //否則 恢復速度
             else
@@ -149,7 +153,8 @@ public class TetrisManager : MonoBehaviour
             #endregion
 
             //如果 目前俄羅斯方塊 Y軸 等於-295 時就 叫下一顆方塊
-            if (currentTeteris.anchoredPosition.y == -295)
+            //if (currentTeteris.anchoredPosition.y == -295)
+            if(tetris.wallDown)
             {
                 StartGame();
             }
