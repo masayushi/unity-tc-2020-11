@@ -216,7 +216,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &4935178692182599481
 RectTransform:
   m_ObjectHideFlags: 0
@@ -254,9 +254,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cube0: 1.2
   cube90: 0.8
-  cube: 1.2
+  offsetX: 0
+  offsetY: 0
   wallRight: 0
   wallLeft: 0
+  wallDown: 0
 --- !u!1 &6388664245798609408
 GameObject:
   m_ObjectHideFlags: 0
