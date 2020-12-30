@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1528582964537310867}
+  - component: {fileID: 504474842809060228}
   m_Layer: 5
   m_Name: "T\u5F62"
   m_TagString: Untagged
@@ -39,6 +40,25 @@ RectTransform:
   m_AnchoredPosition: {x: 227, y: -594}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &504474842809060228
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1528582964537310864}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee77d18012b9637468ae43874f4584aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cube0: 0
+  cube90: 0
+  offsetX: 0
+  offsetY: 0
+  wallRight: 0
+  wallLeft: 0
+  wallDown: 0
 --- !u!1 &1528582964705765598
 GameObject:
   m_ObjectHideFlags: 0

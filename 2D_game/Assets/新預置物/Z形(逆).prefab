@@ -82,6 +82,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3637628760016224166}
+  - component: {fileID: 4912243320427960923}
   m_Layer: 5
   m_Name: "Z\u5F62(\u9006)"
   m_TagString: Untagged
@@ -112,6 +113,25 @@ RectTransform:
   m_AnchoredPosition: {x: 609, y: -306}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &4912243320427960923
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3637628760016224167}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee77d18012b9637468ae43874f4584aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cube0: 0
+  cube90: 0
+  offsetX: 0
+  offsetY: 0
+  wallRight: 0
+  wallLeft: 0
+  wallDown: 0
 --- !u!1 &3637628760991056069
 GameObject:
   m_ObjectHideFlags: 0
