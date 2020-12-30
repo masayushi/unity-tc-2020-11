@@ -2465,25 +2465,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 585496642}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1064742559
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1064742558}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ee77d18012b9637468ae43874f4584aa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cube0: 0
-  cube90: 0
-  offsetX: 0
-  offsetY: 0
-  wallRight: 0
-  wallLeft: 0
-  wallDown: 0
 --- !u!61 &1064742560
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2516,25 +2497,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1812952200}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1100269737
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1100269736}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ee77d18012b9637468ae43874f4584aa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cube0: 0
-  cube90: 0
-  offsetX: 0
-  offsetY: 0
-  wallRight: 0
-  wallLeft: 0
-  wallDown: 0
 --- !u!61 &1100269738
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2776,25 +2738,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 810293477}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1197307285
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1197307284}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ee77d18012b9637468ae43874f4584aa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cube0: 0
-  cube90: 0
-  offsetX: 0
-  offsetY: 0
-  wallRight: 0
-  wallLeft: 0
-  wallDown: 0
 --- !u!61 &1197307286
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3087,25 +3030,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1360817573}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1249315770
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1249315769}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ee77d18012b9637468ae43874f4584aa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cube0: 0
-  cube90: 0
-  offsetX: 0
-  offsetY: 0
-  wallRight: 0
-  wallLeft: 0
-  wallDown: 0
 --- !u!61 &1249315771
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3465,25 +3389,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1549554187}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1312433759
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1312433758}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ee77d18012b9637468ae43874f4584aa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cube0: 0
-  cube90: 0
-  offsetX: 0
-  offsetY: 0
-  wallRight: 0
-  wallLeft: 0
-  wallDown: 0
 --- !u!61 &1312433760
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4549,25 +4454,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 915158006}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1846685843
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1846685842}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ee77d18012b9637468ae43874f4584aa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cube0: 0
-  cube90: 0
-  offsetX: 0
-  offsetY: 0
-  wallRight: 0
-  wallLeft: 0
-  wallDown: 0
 --- !u!61 &1846685844
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5346,25 +5232,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 406465310}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2134436988
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2134436987}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ee77d18012b9637468ae43874f4584aa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cube0: 0
-  cube90: 0
-  offsetX: 0
-  offsetY: 0
-  wallRight: 0
-  wallLeft: 0
-  wallDown: 0
 --- !u!61 &2134436989
 BoxCollider2D:
   m_ObjectHideFlags: 0
