@@ -96,7 +96,7 @@ public class TetrisManager : MonoBehaviour
             if (timer >= droptime)
             {
                 timer = 0;
-                currentTeteris.anchoredPosition -= new Vector2(0, 30);
+                currentTeteris.anchoredPosition -= new Vector2(0, 40);
             }
             #region 控制俄羅斯方塊的 左右、旋轉與加速
 
@@ -113,7 +113,7 @@ public class TetrisManager : MonoBehaviour
                     // || 或者
                     if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow))
                     {
-                        currentTeteris.anchoredPosition += new Vector2(30, 0);
+                        currentTeteris.anchoredPosition += new Vector2(40, 0);
                     }
                 }
             }
@@ -125,7 +125,7 @@ public class TetrisManager : MonoBehaviour
                 // 按下 A 往左 -40 或者 按下 <- 往左40
                 if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow))
                 {
-                    currentTeteris.anchoredPosition -= new Vector2(30, 0);
+                    currentTeteris.anchoredPosition -= new Vector2(40, 0);
                 }
             }
 
