@@ -14,6 +14,13 @@ public class Tetris : MonoBehaviour
     [Header("旋轉位移上下")]
     public int offsetY;
 
+    [Header("偵測水平是否能旋轉")]
+    public float cubeRotate0r;
+    public float cubeRotate0l;
+    [Header("偵測垂直是否能旋轉")]
+    public float cubeRotate90r;
+    public float cubeRotate90l;
+
     /// <summary>
     /// 紀錄目前射線長度
     /// </summary>
@@ -48,6 +55,11 @@ public class Tetris : MonoBehaviour
             cubeDown = cube90;
             Gizmos.color = Color.magenta;
             Gizmos.DrawRay(transform.position, -Vector3.up * cube90);
+
+            //垂直時偵測感應牆壁的線條
+            Gizmos.color = Color.blue;
+            Gizmos.DrawRay(transform.position, Vector3.right * cubeRotate0r);
+            Gizmos.DrawRay(transform.position, -Vector3.right * cubeRotate0l);
         }
         else if (z == 90 || z == 270)
         {
@@ -65,12 +77,19 @@ public class Tetris : MonoBehaviour
             cubeDown = cube0;
             Gizmos.color = Color.magenta;
             Gizmos.DrawRay(transform.position, -Vector3.up * cube0);
+
+            // 水平時偵測牆壁感應的線條
+            Gizmos.color = Color.blue;
+            Gizmos.DrawRay(transform.position, Vector3.right * cubeRotate90r);
+            Gizmos.DrawRay(transform.position, -Vector3.right * cubeRotate90l);
         }
     }
     private void Start()
     {
         // 儲存遊戲開始的角度
         cube = cube0;
+
+        rect = GetComponent<RectTransform>();
     }
 
     private void Update()
@@ -92,6 +111,14 @@ public class Tetris : MonoBehaviour
     /// 是否碰到地板
     /// </summary>
     public bool wallDown;
+
+    /// <summary>
+    /// 是否能旋轉
+    /// </summary>
+    public bool canRotate = true;
+
+    //
+    private RectTransform rect;
 
     /// <summary>
     /// 檢查射線是否碰到牆壁
@@ -131,6 +158,25 @@ public class Tetris : MonoBehaviour
         else
         {
             wallDown = false;
+        }
+    }
+
+    /// <summary>
+    /// 旋轉後位移處理
+    /// </summary>
+    public void Offset()
+    {
+        // 將浮點數角度 轉為 整數 - 去小數點
+        int z = (int)transform.eulerAngles.z;
+
+        if (z == 90 || z == 270)
+        {
+            rect.anchoredPosition -= new Vector2(offsetX, offsetY);
+        }
+
+        else if (z == 0 || z == 180)
+        {
+            rect.anchoredPosition += new Vector2(offsetX, offsetY);
         }
     }
 }

@@ -135,6 +135,8 @@ public class TetrisManager : MonoBehaviour
             {
                 // 屬性面板上面的 rotation 必須要用 eulerAngles 來做控制
                 currentTeteris.eulerAngles += new Vector3(0, 0, 90);
+
+                tetris.Offset();
             }
 
             // 如果按下 S 或者 下 時，方塊落下速度會加速 
@@ -169,8 +171,11 @@ public class TetrisManager : MonoBehaviour
     /// </summary>
     private void BLOCK()
     {
-        //下一顆編號 = 隨機 的 範圍(最小,最大) - 整數不會等於最大值(最大值+1)
+        // 下一顆編號 = 隨機 的 範圍(最小,最大) - 整數不會等於最大值(最大值+1)
         indexNext = Random.Range(0, 7);
+
+        // 測試
+         indexNext = 5;
 
         //下一個俄羅斯方塊區域 . 取得子物件(子物件編號) . 轉為遊戲物件 . 啟動設定為(顯示)
         traNaxtAreas.GetChild(indexNext).gameObject.SetActive(true);
