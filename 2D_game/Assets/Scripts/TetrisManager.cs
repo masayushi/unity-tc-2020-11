@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections; //引用  系統.集合 API - 協同程序
 
 public class TetrisManager : MonoBehaviour
 {
@@ -36,8 +37,8 @@ public class TetrisManager : MonoBehaviour
     [Header("下一顆俄羅斯方塊區域")]
     public Transform traNaxtAreas;
 
-    [Header("畫布")]
-    public Transform traCanvas;
+    [Header("生成俄羅斯方塊的父物件")]
+    public Transform traTetrisPaPa;
 
     [Header("生成的起始位置")]
     public Vector2[] posSpawn =
@@ -81,6 +82,12 @@ public class TetrisManager : MonoBehaviour
     private void Update()
     {
         ControlTertis();
+
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            // 啟動協同程序(協同方法())
+            StartCoroutine(shakeEffect());
+        }
     }
 
     /// <summary>
@@ -129,22 +136,25 @@ public class TetrisManager : MonoBehaviour
                 }
             }
 
-
+            // 如果  俄羅斯方塊 可以旋轉
             // 按下 W 逆時針轉90度
-            if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
+            if (tetris.canRotate)
             {
-                // 屬性面板上面的 rotation 必須要用 eulerAngles 來做控制
-                currentTeteris.eulerAngles += new Vector3(0, 0, 90);
+                if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
+                {
+                    // 屬性面板上面的 rotation 必須要用 eulerAngles 來做控制
+                    currentTeteris.eulerAngles += new Vector3(0, 0, 90);
 
-                tetris.Offset();
+                    tetris.Offset();
+                }
             }
 
             // 如果按下 S 或者 下 時，方塊落下速度會加速 
-           
-                if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
-                {
-                    droptime = 0.2f;
-                }
+
+            if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
+            {
+                droptime = 0.2f;
+            }
 
 
             //否則 恢復速度
@@ -156,7 +166,7 @@ public class TetrisManager : MonoBehaviour
 
             //如果 目前俄羅斯方塊 Y軸 等於-295 時就 叫下一顆方塊
             //if (currentTeteris.anchoredPosition.y == -295)
-            if(tetris.wallDown)
+            if (tetris.wallDown)
             {
                 StartGame();
             }
@@ -175,7 +185,7 @@ public class TetrisManager : MonoBehaviour
         indexNext = Random.Range(0, 7);
 
         // 測試
-         indexNext = 5;
+        // indexNext = 0;
 
         //下一個俄羅斯方塊區域 . 取得子物件(子物件編號) . 轉為遊戲物件 . 啟動設定為(顯示)
         traNaxtAreas.GetChild(indexNext).gameObject.SetActive(true);
@@ -194,7 +204,7 @@ public class TetrisManager : MonoBehaviour
         GameObject tetris = traNaxtAreas.GetChild(indexNext).gameObject;
         // 生成物件(物件,父物件)
         // 目前俄羅斯方塊 = 生成物件(物件，父物件)
-        GameObject current = Instantiate(tetris, traCanvas);
+        GameObject current = Instantiate(tetris, traTetrisPaPa);
         // GetComponent<任何元件>()
         // <T>泛型 - 意為所有類型
         // 目前俄羅斯方塊 . 取得元件<介面變形>() . 座標 = 生成座標陣列[編號]
@@ -251,4 +261,36 @@ public class TetrisManager : MonoBehaviour
 
     }
     #endregion
+
+    //協同程序
+    // IEnumerator 為一個時間的傳回類型 - 暫停某區塊(程式)的設定時間，而非所有程式停止
+    private IEnumerator shakeEffect()
+    {
+
+        //範本
+        // 下面這幾段這段是能夠重複寫的
+        //print("協同程序一開始");
+        // yield 讓步 - 等待(時間)
+        //yield return new WaitForSeconds(1f);
+        //print("等待一秒鐘過後...");
+        //yield return new WaitForSeconds(2f);
+        //print("又過了兩秒！");
+
+        // 取得震動物件效果的 Rect 
+        RectTransform rect = traTetrisPaPa.GetComponent<RectTransform>();
+
+        // 晃動 向上 30 > 0 > 20 > 0
+        // 等待時間為0.05秒
+
+        float interval = 0.05f;
+
+        rect.anchoredPosition += Vector2.up * 30;
+        yield return new WaitForSeconds(interval);
+        rect.anchoredPosition += Vector2.zero;
+        yield return new WaitForSeconds(interval);
+        rect.anchoredPosition += Vector2.up * 20;
+        yield return new WaitForSeconds(interval);
+        rect.anchoredPosition += Vector2.zero;
+        yield return new WaitForSeconds(interval);
+    }
 }

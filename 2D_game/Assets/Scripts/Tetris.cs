@@ -26,6 +26,8 @@ public class Tetris : MonoBehaviour
     /// </summary>
     private float cube;
     private float cubeDown;
+    private float cubeRotateR;
+    private float cubeRotateL;
 
     /// <summary>
     /// 繪製圖示(感應邊界的輔助線)
@@ -57,6 +59,9 @@ public class Tetris : MonoBehaviour
             Gizmos.DrawRay(transform.position, -Vector3.up * cube90);
 
             //垂直時偵測感應牆壁的線條
+            cubeRotateR = cubeRotate0r;
+            cubeRotateL = cubeRotate0l;
+
             Gizmos.color = Color.blue;
             Gizmos.DrawRay(transform.position, Vector3.right * cubeRotate0r);
             Gizmos.DrawRay(transform.position, -Vector3.right * cubeRotate0l);
@@ -79,6 +84,9 @@ public class Tetris : MonoBehaviour
             Gizmos.DrawRay(transform.position, -Vector3.up * cube0);
 
             // 水平時偵測牆壁感應的線條
+            cubeRotateR = cubeRotate90r;
+            cubeRotateL = cubeRotate90l;
+
             Gizmos.color = Color.blue;
             Gizmos.DrawRay(transform.position, Vector3.right * cubeRotate90r);
             Gizmos.DrawRay(transform.position, -Vector3.right * cubeRotate90l);
@@ -88,7 +96,7 @@ public class Tetris : MonoBehaviour
     {
         // 儲存遊戲開始的角度
         cube = cube0;
-
+        //UI一律是用RectTransform
         rect = GetComponent<RectTransform>();
     }
 
@@ -135,6 +143,18 @@ public class Tetris : MonoBehaviour
         else
         {
             wallRight = false;
+        }
+
+        //旋轉射線的判定
+        RaycastHit2D hitRotateR = Physics2D.Raycast(transform.position, Vector3.right, cubeRotateR, 1 << 8);
+        RaycastHit2D hitRotateL = Physics2D.Raycast(transform.position, -Vector3.right, cubeRotateL, 1 << 8);
+        if (hitRotateR && hitRotateR.transform.name == "牆壁(右)" || hitRotateL && hitRotateL.transform.name == "牆壁(左)")
+        {
+            canRotate = false;
+        }
+        else
+        {
+            canRotate = true;
         }
 
         //2D 射線碰撞資訊 區域變數名稱 = 2D 物理.射線碰撞(起點，方向，長度，圖層)
