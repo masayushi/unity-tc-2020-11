@@ -5791,7 +5791,7 @@ MonoBehaviour:
   soundClear: {fileID: 0}
   soundLose: {fileID: 0}
   traNaxtAreas: {fileID: 1309823608}
-  traTetrisPaPa: {fileID: 0}
+  traTetrisPaPa: {fileID: 1376804309}
   posSpawn:
   - {x: 15, y: 240}
   - {x: 0, y: 225}

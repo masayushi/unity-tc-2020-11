@@ -83,7 +83,7 @@ public class TetrisManager : MonoBehaviour
     {
         ControlTertis();
 
-        if (Input.GetKeyDown(KeyCode.Alpha1))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             // 啟動協同程序(協同方法())
             StartCoroutine(shakeEffect());
@@ -286,11 +286,11 @@ public class TetrisManager : MonoBehaviour
 
         rect.anchoredPosition += Vector2.up * 30;
         yield return new WaitForSeconds(interval);
-        rect.anchoredPosition += Vector2.zero;
+        rect.anchoredPosition = Vector2.zero;
         yield return new WaitForSeconds(interval);
         rect.anchoredPosition += Vector2.up * 20;
         yield return new WaitForSeconds(interval);
-        rect.anchoredPosition += Vector2.zero;
+        rect.anchoredPosition = Vector2.zero;
         yield return new WaitForSeconds(interval);
     }
 }
