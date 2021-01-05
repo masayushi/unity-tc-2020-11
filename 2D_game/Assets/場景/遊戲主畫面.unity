@@ -3710,6 +3710,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: "Z\u5F62"
       objectReference: {fileID: 0}
+    - target: {fileID: 3968971275228046588, guid: 03563d15c6a2ae54b855b09203d5e271,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3968971275228046589, guid: 03563d15c6a2ae54b855b09203d5e271,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5998,6 +6003,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: "L\u5F62"
+      objectReference: {fileID: 0}
+    - target: {fileID: 273504244070369423, guid: 7b2568b09a5392f47a24a9819e010672,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7b2568b09a5392f47a24a9819e010672, type: 3}
@@ -8454,6 +8464,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: "I\u5F62"
+      objectReference: {fileID: 0}
+    - target: {fileID: 4628074836692764040, guid: 7bc3a0e2ffeea15448b616ba1253b5a2,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4628074836692764041, guid: 7bc3a0e2ffeea15448b616ba1253b5a2,
         type: 3}
@@ -13044,6 +13059,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: "L\u5F62(\u9006)"
       objectReference: {fileID: 0}
+    - target: {fileID: 6067313665098557672, guid: 91c84cbda16f9c3419f624c2f766f636,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6067313665098557675, guid: 91c84cbda16f9c3419f624c2f766f636,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -15147,6 +15167,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: "T\u5F62"
       objectReference: {fileID: 0}
+    - target: {fileID: 1528582964537310864, guid: 2ac171609d9800545836073c60f2e15e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1528582964537310867, guid: 2ac171609d9800545836073c60f2e15e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -15831,7 +15856,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -1, y: -230}
+  m_AnchoredPosition: {x: -1, y: -227.9}
   m_SizeDelta: {x: 485, y: 30.001}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1677202616

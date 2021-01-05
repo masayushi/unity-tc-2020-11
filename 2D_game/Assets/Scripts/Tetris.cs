@@ -2,6 +2,7 @@
 
 public class Tetris : MonoBehaviour
 {
+    #region 欄位
     [Header("角度為0時，輔助線的長度")]
     public float cube0;
 
@@ -20,7 +21,11 @@ public class Tetris : MonoBehaviour
     [Header("偵測垂直是否能旋轉")]
     public float cubeRotate90r;
     public float cubeRotate90l;
+    #endregion 
+    [Header("每一顆小方塊的射線長度"), Range(0f, 2f)]
+    public float smallcube = 0.5f;
 
+    #region 事件
     /// <summary>
     /// 紀錄目前射線長度
     /// </summary>
@@ -34,6 +39,7 @@ public class Tetris : MonoBehaviour
     /// </summary>
     private void OnDrawGizmos()
     {
+        #region 判定牆壁與地板
         //圖示輔助線  的  顏色
         Gizmos.color = Color.red;
 
@@ -91,7 +97,22 @@ public class Tetris : MonoBehaviour
             Gizmos.DrawRay(transform.position, Vector3.right * cubeRotate90r);
             Gizmos.DrawRay(transform.position, -Vector3.right * cubeRotate90l);
         }
+        #endregion
+        #region 每一顆方塊判定
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            Gizmos.color = Color.white;
+            Gizmos.DrawRay(transform.GetChild(i).position, Vector2.down * smallcube);
+        }
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            Gizmos.color = Color.white;
+            Gizmos.DrawRay(transform.GetChild(i).position, Vector2.right * smallcube);
+        }
+        #endregion
     }
+
+
     private void Start()
     {
         // 儲存遊戲開始的角度
@@ -103,8 +124,43 @@ public class Tetris : MonoBehaviour
     private void Update()
     {
         CheckWall();
+        CheckBottom();
     }
+    #endregion
 
+    /// <summary>
+    /// 小方塊底部碰撞
+    /// </summary>
+    public bool smallBottom;
+
+    public bool smallRight;
+
+    private void CheckLeftAndRight()
+    {
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            RaycastHit2D hit = Physics2D.Raycast(transform.GetChild(i).position, Vector3.right, smallcube, 1 << 10);
+            if (hit && hit.collider.name == "方塊") smallRight = true;
+            else smallRight = false;
+        }
+    }
+    /// <summary>
+    /// 檢查底部是否有其他方塊
+    /// </summary>
+    private void CheckBottom()
+    {
+        //迴圈執行每一顆小方塊
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            //每一個小方塊 射線(每一顆小方塊的中心點，向下，長度，圖層)
+            RaycastHit2D hit = Physics2D.Raycast(transform.GetChild(i).position, Vector3.down, smallcube, 1 << 10);
+            if (hit && hit.collider.name == "方塊") smallBottom = true;
+            {
+
+            }
+        }
+    }
+    #region 方法
     /// <summary>
     /// 是否碰到牆壁的右邊
     /// </summary>
@@ -199,4 +255,5 @@ public class Tetris : MonoBehaviour
             rect.anchoredPosition += new Vector2(offsetX, offsetY);
         }
     }
+    #endregion
 }

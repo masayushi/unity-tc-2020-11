@@ -123,7 +123,7 @@ public class TetrisManager : MonoBehaviour
 
             // 如果 X座標 大於 -210 才能向左移動
             // if (currentTeteris.anchoredPosition.x > -210) 左為另一個方法，是以座標來定
-            if (!tetris.wallLeft)
+            if (!tetris.wallLeft && !tetris.smallRight)
             {
                 // 按下 A 往左 -40 或者 按下 <- 往左40
                 if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow))
@@ -163,7 +163,7 @@ public class TetrisManager : MonoBehaviour
 
             //如果 目前俄羅斯方塊 Y軸 等於-295 時就 叫下一顆方塊
             //if (currentTeteris.anchoredPosition.y == -295)
-            if (tetris.wallDown)
+            if (tetris.wallDown || tetris.smallBottom)
             {
                 SetGround();                     // 設定為地板
                 StartGame();                    // 生成下顆方塊
@@ -178,6 +178,7 @@ public class TetrisManager : MonoBehaviour
     private void SetGround()
     {
         /*
+         * 解釋案例
            // 迴圈 for
            // (初始值 ； 條件 ； 迭代器)
            for (int i = 0; i < 10; i++)
@@ -190,8 +191,8 @@ public class TetrisManager : MonoBehaviour
 
         for (int i = 0; i < count; i++)                          //迴圈 執行 子物件數量次數
         {
-            currentTeteris.GetChild(i).name = "地板";            //名稱改為地板
-            currentTeteris.GetChild(i).gameObject.layer = 9;     //圖層改為地板
+            currentTeteris.GetChild(i).name = "方塊";            //名稱改為方塊
+            currentTeteris.GetChild(i).gameObject.layer = 10;     //圖層改為方塊
         }
 
     }
@@ -262,7 +263,7 @@ public class TetrisManager : MonoBehaviour
             {
                 Droptime = true;
                 // 快速掉落的掉落時間
-                droptime = 0.018f;
+                droptime = 0.025f;
             }
         }
     }

@@ -76,16 +76,22 @@ public class Car : MonoBehaviour
     public Camera cam;
     #endregion
 
+    [Header("每一顆小方塊的射線長度"), Range(0f, 2f)]
+    public float smallcube = 0.5f;
     #region 事件
     //事件：開始事件 - 撥放後執行一次
+    #region 
 
+        /// <summary>
+        /// 繪製圖示
+        /// </summary>
     private void Start()
     {
         print("Hello,world!");
 
         //取得 欄位 (抓出資料)
-         print(size);
-         print(brand);
+        print(size);
+        print(brand);
 
         //設定 欄位 (修改資料)
         weight = 1.3f;
@@ -120,6 +126,15 @@ public class Car : MonoBehaviour
     }
     #endregion
 
+    private void OnDrawGizmos()
+    {
+
+        #region  每一顆判定
+
+        #endregion
+    }
+    #endregion
+
 
     #region 方法
     // 欄位語法：
@@ -135,7 +150,7 @@ public class Car : MonoBehaviour
     {
         print("hello~ I'am MethodA");
     }
-    
+
     // 如果不是無傳回，必須使用關鍵字「return」傳回，且必須在 return 後加上傳回類型的資料
     private int MethodB()
     {

@@ -16,7 +16,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1528582964537310867
 RectTransform:
   m_ObjectHideFlags: 0
@@ -52,14 +52,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee77d18012b9637468ae43874f4584aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cube0: 0.6
-  cube90: 0.4
+  cube0: 0.8
+  cube90: 0.6
   offsetX: 15
   offsetY: 15
   cubeRotate0r: 0
   cubeRotate0l: 0
   cubeRotate90r: 0.5
   cubeRotate90l: 0
+  smallcube: 0.5
   wallRight: 0
   wallLeft: 0
   wallDown: 0
