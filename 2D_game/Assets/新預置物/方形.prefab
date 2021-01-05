@@ -252,8 +252,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee77d18012b9637468ae43874f4584aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cube0: 0.7
-  cube90: 0.7
+  cube0: 0.5
+  cube90: 0.5
   offsetX: 0
   offsetY: 0
   cubeRotate0r: 0
