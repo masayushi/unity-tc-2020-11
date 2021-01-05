@@ -531,19 +531,19 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - "Assets/\u5834\u666F"
+    - Assets/Scripts
   m_ViewMode: 1
   m_StartGridSize: 53
   m_LastFolders:
-  - "Assets/\u5834\u666F"
+  - Assets/Scripts
   m_LastFoldersGridSize: 53
   m_LastProjectPath: C:\Users\USER\Documents\GitHub\unity-tc-2020-11\2D_game
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 5c2f0000
-    m_LastClickedID: 12124
+    m_SelectedIDs: c2330000
+    m_LastClickedID: 13250
     m_ExpandedIDs: 00000000102f000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -599,7 +599,7 @@ MonoBehaviour:
   m_ListAreaState:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
-    m_HadKeyboardFocusLastEvent: 0
+    m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: c6230000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -664,9 +664,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 3.5592797, y: 1.2676886, z: 90}
+    m_Target: {x: 1.8719318, y: -0.031006364, z: 333.27246}
     speed: 2
-    m_Value: {x: 3.5592797, y: 1.2676886, z: 90}
+    m_Value: {x: 1.8719318, y: -0.031006364, z: 333.27246}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -699,9 +699,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 1.7403884
+    m_Target: 6.8116336
     speed: 2
-    m_Value: 1.7403884
+    m_Value: 6.8116336
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -756,9 +756,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 10fbffff
-      m_LastClickedID: -1264
-      m_ExpandedIDs: 72fbffffd6390000e0390000423a0000
+      m_SelectedIDs: 
+      m_LastClickedID: 0
+      m_ExpandedIDs: 72fbffffd6390000423a0000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 

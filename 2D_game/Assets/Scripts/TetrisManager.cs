@@ -83,11 +83,7 @@ public class TetrisManager : MonoBehaviour
     {
         ControlTertis();
 
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            // 啟動協同程序(協同方法())
-            StartCoroutine(shakeEffect());
-        }
+        FastDown();
     }
 
     /// <summary>
@@ -150,17 +146,18 @@ public class TetrisManager : MonoBehaviour
             }
 
             // 如果按下 S 或者 下 時，方塊落下速度會加速 
-
-            if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
+            if (!Droptime)
             {
-                droptime = 0.2f;
-            }
+                if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
+                {
+                    droptime = 0.2f;
+                }
 
-
-            //否則 恢復速度
-            else
-            {
-                droptime = 1.0f;
+                //否則 恢復速度
+                else
+                {
+                    droptime = 1.0f;
+                }
             }
             #endregion
 
@@ -168,9 +165,35 @@ public class TetrisManager : MonoBehaviour
             //if (currentTeteris.anchoredPosition.y == -295)
             if (tetris.wallDown)
             {
-                StartGame();
+                SetGround();                     // 設定為地板
+                StartGame();                    // 生成下顆方塊
+                StartCoroutine(shakeEffect());  // 啟動協同程序(協同方法())
             }
         }
+    }
+
+    /// <summary>
+    /// 設定掉落後變為地板
+    /// </summary>
+    private void SetGround()
+    {
+        /*
+           // 迴圈 for
+           // (初始值 ； 條件 ； 迭代器)
+           for (int i = 0; i < 10; i++)
+           {
+               print("迴圈：" + i);
+           }
+       */
+
+        int count = currentTeteris.childCount;                   //取得  目前 方塊  的 子物件數量
+
+        for (int i = 0; i < count; i++)                          //迴圈 執行 子物件數量次數
+        {
+            currentTeteris.GetChild(i).name = "地板";            //名稱改為地板
+            currentTeteris.GetChild(i).gameObject.layer = 9;     //圖層改為地板
+        }
+
     }
 
     #region 方法語法練習 練習 2
@@ -199,6 +222,9 @@ public class TetrisManager : MonoBehaviour
     /// </summary>
     public void StartGame()
     {
+        //碰到地板後，停止快速落下
+        Droptime = false;
+
         // 1. 生成的俄羅斯方塊要放在正確位置
         // 保存上一次的俄羅斯方塊
         GameObject tetris = traNaxtAreas.GetChild(indexNext).gameObject;
@@ -219,6 +245,27 @@ public class TetrisManager : MonoBehaviour
         currentTeteris = current.GetComponent<RectTransform>();
     }
 
+    /// <summary>
+    /// 是否快速落下
+    /// </summary>
+    private bool Droptime;
+
+    /// <summary>
+    /// 快速落下功能
+    /// </summary>
+    private void FastDown()
+    {
+        // 如果有方塊存在於遊戲區
+        if (currentTeteris && !Droptime)
+        {
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                Droptime = true;
+                // 快速掉落的掉落時間
+                droptime = 0.018f;
+            }
+        }
+    }
 
     /// <summary>
     /// 添加分數
