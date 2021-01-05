@@ -6004,6 +6004,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: "L\u5F62"
       objectReference: {fileID: 0}
+    - target: {fileID: 273504244070369423, guid: 7b2568b09a5392f47a24a9819e010672,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7b2568b09a5392f47a24a9819e010672, type: 3}
 --- !u!1 &585641179
@@ -13054,11 +13059,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: "L\u5F62(\u9006)"
       objectReference: {fileID: 0}
-    - target: {fileID: 6067313665098557672, guid: 91c84cbda16f9c3419f624c2f766f636,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6067313665098557675, guid: 91c84cbda16f9c3419f624c2f766f636,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -17026,11 +17026,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: "Z\u5F62(\u9006)"
-      objectReference: {fileID: 0}
-    - target: {fileID: 3637628760016224167, guid: b9ba343668828c14ba0529fff3f51f34,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b9ba343668828c14ba0529fff3f51f34, type: 3}

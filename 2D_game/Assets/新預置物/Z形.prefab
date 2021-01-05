@@ -253,7 +253,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cube0: 0.7
-  cube90: 0.5
+  cube90: 0.4
   offsetX: 15
   offsetY: 15
   cubeRotate0r: 0
