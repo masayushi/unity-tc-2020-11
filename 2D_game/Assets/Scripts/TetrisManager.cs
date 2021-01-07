@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Linq;        //查詢語言
 using System.Collections; //引用  系統.集合 API - 協同程序
 
 public class TetrisManager : MonoBehaviour
@@ -108,7 +109,7 @@ public class TetrisManager : MonoBehaviour
             // 如果 X座標 小於 230 才能向右移動
             // if (currentTeteris.anchoredPosition.x < 230) 左為另一個方法，是以座標來定
             //如果 X 座標 沒有碰到右邊牆壁
-            if (!tetris.wallRight)
+            if (!tetris.wallRight && !tetris.smallRight)
             {
                 {
                     // 按下 D 往右 40 或者 按下 -> 往右40
@@ -123,7 +124,7 @@ public class TetrisManager : MonoBehaviour
 
             // 如果 X座標 大於 -210 才能向左移動
             // if (currentTeteris.anchoredPosition.x > -210) 左為另一個方法，是以座標來定
-            if (!tetris.wallLeft && !tetris.smallRight)
+            if (!tetris.wallLeft && !tetris.smallLeft)
             {
                 // 按下 A 往左 -40 或者 按下 <- 往左40
                 if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow))
@@ -166,8 +167,9 @@ public class TetrisManager : MonoBehaviour
             if (tetris.wallDown || tetris.smallBottom)
             {
                 SetGround();                     // 設定為地板
+                CheckTetris();                   //檢查並開始消除判定
                 StartGame();                    // 生成下顆方塊
-                StartCoroutine(shakeEffect());  // 啟動協同程序(協同方法())
+                StartCoroutine(shakeEffect());  // 啟動協同程序(協同方法()) - 晃動效果
             }
         }
     }
@@ -194,6 +196,13 @@ public class TetrisManager : MonoBehaviour
             currentTeteris.GetChild(i).name = "方塊";            //名稱改為方塊
             currentTeteris.GetChild(i).gameObject.layer = 10;     //圖層改為方塊
         }
+
+        for (int i = 0; i < count; i++)
+        {
+            currentTeteris.GetChild(0).SetParent(traScoreArea);
+        }
+
+        Destroy(currentTeteris.gameObject);
 
     }
 
@@ -246,10 +255,6 @@ public class TetrisManager : MonoBehaviour
         currentTeteris = current.GetComponent<RectTransform>();
     }
 
-    /// <summary>
-    /// 是否快速落下
-    /// </summary>
-    private bool Droptime;
 
     /// <summary>
     /// 快速落下功能
@@ -267,6 +272,7 @@ public class TetrisManager : MonoBehaviour
             }
         }
     }
+
 
     /// <summary>
     /// 添加分數
@@ -340,5 +346,35 @@ public class TetrisManager : MonoBehaviour
         yield return new WaitForSeconds(interval);
         rect.anchoredPosition = Vector2.zero;
         yield return new WaitForSeconds(interval);
+    }
+
+    /// <summary>
+    /// 是否快速落下
+    /// </summary>
+    private bool Droptime;
+    /// <summary>
+    /// 分數判定與消除
+    /// </summary>
+    [Header("分數判定區域")]
+    public Transform traScoreArea;
+
+    public RectTransform[] rectSmall;
+
+    /// <summary>
+    /// 檢查方塊是否連線
+    /// </summary>
+    private void CheckTetris()
+    {
+        // 指定數量與子物件相同
+        rectSmall = new RectTransform[traScoreArea.childCount];
+
+        // 利用迴圈將子物件儲存
+        for (int i = 0; i < traScoreArea.childCount; i++)
+        {
+            rectSmall[i] = traScoreArea.GetChild(i).GetComponent<RectTransform>();
+        }
+
+        var small = rectSmall.Where(x => x.anchoredPosition.y == -195);
+        print(small.ToArray().Length);
     }
 }

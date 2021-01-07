@@ -1,4 +1,6 @@
 ﻿using UnityEngine;
+// 引用  系統  查詢語言的 API - 偵測陣列與清單內的資料
+using System.Linq;
 
 public class Tetris : MonoBehaviour
 {
@@ -108,6 +110,8 @@ public class Tetris : MonoBehaviour
         {
             Gizmos.color = Color.white;
             Gizmos.DrawRay(transform.GetChild(i).position, Vector2.right * smallcube);
+            Gizmos.color = Color.gray;
+            Gizmos.DrawRay(transform.GetChild(i).position, Vector2.left * smallcube);
         }
         #endregion
     }
@@ -119,12 +123,17 @@ public class Tetris : MonoBehaviour
         cube = cube0;
         //UI一律是用RectTransform
         rect = GetComponent<RectTransform>();
+
+        //偵測到幾個子物件(小方塊)，就新增幾個陣列
+        smallRightAll = new bool[transform.childCount];
+        smallLeftAll = new bool[transform.childCount];
     }
 
     private void Update()
     {
         CheckWall();
         CheckBottom();
+        CheckLeftAndRight();
     }
     #endregion
 
@@ -133,16 +142,51 @@ public class Tetris : MonoBehaviour
     /// </summary>
     public bool smallBottom;
 
+    /// <summary>
+    /// 右邊是否有方塊
+    /// </summary>
     public bool smallRight;
+
+
+    /// <summary>
+    /// 所有小方塊右邊是否有其他方塊
+    /// </summary>
+    public bool[] smallRightAll;
+
+    /// <summary>
+    /// 左邊是否有方塊
+    /// </summary>
+    public bool smallLeft;
+
+    /// <summary>
+    /// 所有小方塊左邊是否有方塊
+    /// </summary>
+    public bool[] smallLeftAll;
 
     private void CheckLeftAndRight()
     {
         for (int i = 0; i < transform.childCount; i++)
         {
-            RaycastHit2D hit = Physics2D.Raycast(transform.GetChild(i).position, Vector3.right, smallcube, 1 << 10);
-            if (hit && hit.collider.name == "方塊") smallRight = true;
-            else smallRight = false;
+            RaycastHit2D hitR = Physics2D.Raycast(transform.GetChild(i).position, Vector3.right, smallcube, 1 << 10);
+            // 如果   右邊有方塊  就  勾選(判定)與陣列對應的格子
+            if (hitR && hitR.collider.name == "方塊") smallRightAll[i] = true;
+            else smallRightAll[i] = false;
+
+            RaycastHit2D hitL = Physics2D.Raycast(transform.GetChild(i).position, Vector3.left, smallcube, 1 << 10);
+            // 如果   左邊有方塊  就  勾選(判定)與陣列對應的格子
+            if (hitL && hitL.collider.name == "方塊") smallLeftAll[i] = true;
+            else smallLeftAll[i] = false;
         }
+
+        // 檢查陣列內 等於 true 的資料
+        // 陣列.哪裡(代名詞 => 條件)
+        // var 為 無類型
+        var allRight = smallRightAll.Where(x => x == true);
+        smallRight = allRight.ToArray().Length > 0;
+        //轉為陣列.數量
+        //print(smallRightAll.ToArray().Length);
+        var allLeft = smallLeftAll.Where(x => x == true);
+        smallLeft = allLeft.ToArray().Length > 0;
     }
     /// <summary>
     /// 檢查底部是否有其他方塊
@@ -155,9 +199,6 @@ public class Tetris : MonoBehaviour
             //每一個小方塊 射線(每一顆小方塊的中心點，向下，長度，圖層)
             RaycastHit2D hit = Physics2D.Raycast(transform.GetChild(i).position, Vector3.down, smallcube, 1 << 10);
             if (hit && hit.collider.name == "方塊") smallBottom = true;
-            {
-
-            }
         }
     }
     #region 方法
