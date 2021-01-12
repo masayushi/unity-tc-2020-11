@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
-using System.Linq;        //查詢語言
-using System.Collections; //引用  系統.集合 API - 協同程序
+using UnityEngine.UI;     // 引用介面   API
+using System.Linq;        // 查詢語言
+using System.Collections; // 引用  系統.集合 API - 協同程序
 
 public class TetrisManager : MonoBehaviour
 {
@@ -373,8 +374,25 @@ public class TetrisManager : MonoBehaviour
         {
             rectSmall[i] = traScoreArea.GetChild(i).GetComponent<RectTransform>();
         }
+        // 查詢有幾顆位置在 -195 +- 5的範圍
+        var small = rectSmall.Where(x => x.anchoredPosition.y >= -195 - 5 && x.anchoredPosition.y <= -195 + 5);
+         // print(small.ToArray().Length);
 
-        var small = rectSmall.Where(x => x.anchoredPosition.y == -195);
-        print(small.ToArray().Length);
+        if (small.ToArray().Length == 16)
+        {
+
+        }
+    }
+
+    private IEnumerable shine(RectTransform[] smalls)
+    {
+        float Interval = 0.005f;
+        for (int i = 0; i < 16; i++) smalls[i].GetComponent<Image>().enabled = false;
+        yield return new WaitForSeconds(Interval);
+        for (int i = 0; i < 16; i++) smalls[i].GetComponent<Image>().enabled = true;
+        yield return new WaitForSeconds(Interval);
+        for (int i = 0; i < 16; i++) smalls[i].GetComponent<Image>().enabled = false;
+        yield return new WaitForSeconds(Interval);
+        for (int i = 0; i < 16; i++) smalls[i].GetComponent<Image>().enabled = true;
     }
 }
