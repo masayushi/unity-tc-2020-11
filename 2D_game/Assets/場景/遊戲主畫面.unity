@@ -5802,6 +5802,10 @@ MonoBehaviour:
   - {x: 0, y: 210}
   traScoreArea: {fileID: 1512079980}
   rectSmall: []
+  destoryRow: 0000000000000000000000000000
+  downHeight: []
+  textScore: {fileID: 127538219}
+  textLv: {fileID: 158603623}
 --- !u!4 &567674432
 Transform:
   m_ObjectHideFlags: 0

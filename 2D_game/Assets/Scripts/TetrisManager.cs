@@ -168,7 +168,7 @@ public class TetrisManager : MonoBehaviour
             if (tetris.wallDown || tetris.smallBottom)
             {
                 SetGround();                     // 設定為地板
-                CheckTetris();                   //檢查並開始消除判定
+                StartCoroutine(CheckTetris());   //檢查並開始消除判定
                 StartGame();                    // 生成下顆方塊
                 StartCoroutine(shakeEffect());  // 啟動協同程序(協同方法()) - 晃動效果
             }
@@ -362,9 +362,19 @@ public class TetrisManager : MonoBehaviour
     public RectTransform[] rectSmall;
 
     /// <summary>
+    /// 要刪除的列數
+    /// </summary>
+    public bool[] destoryRow = new bool[14];
+
+    /// <summary>
+    /// 剩下的方塊快要掉落的高度
+    /// </summary>
+    public float[] downHeight;
+
+    /// <summary>
     /// 檢查方塊是否連線
     /// </summary>
-    private void CheckTetris()
+    private IEnumerator CheckTetris()
     {
         // 指定數量與子物件相同
         rectSmall = new RectTransform[traScoreArea.childCount];
@@ -374,19 +384,62 @@ public class TetrisManager : MonoBehaviour
         {
             rectSmall[i] = traScoreArea.GetChild(i).GetComponent<RectTransform>();
         }
-        // 查詢有幾顆位置在 -195 +- 5的範圍
-        var small = rectSmall.Where(x => x.anchoredPosition.y >= -195 - 5 && x.anchoredPosition.y <= -195 + 5);
-         // print(small.ToArray().Length);
 
-        if (small.ToArray().Length == 16)
+        int row = 14;                       //總共有的列數(直的)
+
+        for (int i = 0; i < row; i++)
         {
+            float bottom = -195;            // 最底層的位置
+            float step = 30;                // 每層的間距
 
+            // 查詢有幾顆位置在 -195 +- 5的範圍
+            var small = rectSmall.Where(x => x.anchoredPosition.y >= bottom + step * i - 5 && x.anchoredPosition.y <= bottom + step * i + 5);
+            // print(small.ToArray().Length);
+
+            if (small.ToArray().Length == 16)
+            {
+                yield return StartCoroutine(shine(small.ToArray()));     // 開始閃爍
+                destoryRow[i] = true;                                    // 紀錄要刪除的列數
+                AddScore(1000);
+            }
+        }
+
+        downHeight = new float[traScoreArea.childCount];                // 紀錄有幾顆刪除後剩下的方塊
+        for (int i = 0; i < downHeight.Length; i++) downHeight[i] = 0;  // 先將掉落高度歸零
+
+        // 計算每顆剩下方塊要掉落的高度
+        for (int i = 0; i < destoryRow.Length; i++)
+        {
+            if (!destoryRow[i]) continue;                               // 如果 此列 沒有要刪除 就跳過繼續下一列
+
+            for (int x = 0; x < rectSmall.Length; x++)                  // 迴圈 執行 每一顆剩下的方塊
+            {
+                if (rectSmall[x].anchoredPosition.y > -195 + 30 * i - 5)    // 如果 此方塊 Y 大於 要刪除的行
+                {
+                    downHeight[x] -= 30;                                // 座標 遞減 30
+                }
+            }
+
+            destoryRow[i] = false;                                       // 恢復為不消除
+        }
+
+        // 更新方塊的高度：往下掉
+        for (int i = 0; i < rectSmall.Length; i++)
+        {
+            rectSmall[i].anchoredPosition += Vector2.up *  downHeight[i];
         }
     }
 
-    private IEnumerable shine(RectTransform[] smalls)
+    /// <summary>
+    /// 閃爍、消除效果、閃爍後刪除
+    /// </summary>
+    /// <param name="smalls">要閃爍與消除的列</param>
+    /// <returns></returns>
+
+    private IEnumerator shine(RectTransform[] smalls)
     {
-        float Interval = 0.005f;
+        // 閃爍
+        float Interval = 0.08f;
         for (int i = 0; i < 16; i++) smalls[i].GetComponent<Image>().enabled = false;
         yield return new WaitForSeconds(Interval);
         for (int i = 0; i < 16; i++) smalls[i].GetComponent<Image>().enabled = true;
@@ -394,5 +447,44 @@ public class TetrisManager : MonoBehaviour
         for (int i = 0; i < 16; i++) smalls[i].GetComponent<Image>().enabled = false;
         yield return new WaitForSeconds(Interval);
         for (int i = 0; i < 16; i++) smalls[i].GetComponent<Image>().enabled = true;
+
+        // 消除
+        yield return new WaitForSeconds(Interval);
+        for (int i = 0; i < 16; i++) Destroy(smalls[i].gameObject);
+
+        // 重新取得小方塊：避免 Missing 導致的錯誤
+        yield return new WaitForSeconds(Interval);
+
+        // 指定數量與子物件相同
+        rectSmall = new RectTransform[traScoreArea.childCount];
+
+        // 利用迴圈將子物件儲存
+        for (int i = 0; i < traScoreArea.childCount; i++)
+        {
+            rectSmall[i] = traScoreArea.GetChild(i).GetComponent<RectTransform>();
+        }
+    }
+    [Header("分數文字")]
+    public Text textScore;
+    [Header("等級文字")]
+    public Text textLv;
+
+    private float timeFallMax = 1.5f;
+
+
+    /// <summary>
+    /// 添加分數
+    /// </summary>
+    /// <param name="add"></param>
+    public void AddScore(int add)
+    {
+        nscore += add;                           // 分數疊加
+        textScore.text = "分數：" + nscore;      // 更新介面
+
+        level = 1 + nscore / 1000;             // 等級公式
+        textLv.text = "等級：" + level;      // 更新介面
+
+        timeFallMax = 1.5f - level / 2;
+        timeFallMax 
     }
 }
