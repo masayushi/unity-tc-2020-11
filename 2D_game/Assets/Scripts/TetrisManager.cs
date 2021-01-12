@@ -158,7 +158,7 @@ public class TetrisManager : MonoBehaviour
                 //否則 恢復速度
                 else
                 {
-                    droptime = 1.0f;
+                    droptime = DroptimeMax;
                 }
             }
             #endregion
@@ -469,7 +469,7 @@ public class TetrisManager : MonoBehaviour
     [Header("等級文字")]
     public Text textLv;
 
-    private float timeFallMax = 1.5f;
+    private float DroptimeMax = 1.5f;
 
 
     /// <summary>
@@ -484,7 +484,10 @@ public class TetrisManager : MonoBehaviour
         level = 1 + nscore / 1000;             // 等級公式
         textLv.text = "等級：" + level;      // 更新介面
 
-        timeFallMax = 1.5f - level / 2;
-        timeFallMax 
+        DroptimeMax = 1.5f - level / 2;            // 速度提升公式
+
+        DroptimeMax = Mathf.Clamp(DroptimeMax, 0.1f, 99f);
+
+        droptime = DroptimeMax;
     }
 }
