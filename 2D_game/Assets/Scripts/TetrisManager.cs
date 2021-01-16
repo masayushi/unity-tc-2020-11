@@ -166,7 +166,8 @@ public class TetrisManager : MonoBehaviour
             // 如果按下 S 或者 下 時，方塊落下速度會加速 
             if (!Droptime)
             {
-                aud.PlayOneShot(soundMove, Random.Range(0.8f, 1.2f));
+                //aud.PlayOneShot(soundMove, Random.Range(0.8f, 1.2f));
+
                 if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
                 {
                     droptime = 0.2f;
@@ -206,6 +207,8 @@ public class TetrisManager : MonoBehaviour
                print("迴圈：" + i);
            }
        */
+
+        aud.PlayOneShot(soundfall, Random.Range(0.8f, 1.2f));
 
         int count = currentTeteris.childCount;                   //取得  目前 方塊  的 子物件數量
 
@@ -322,6 +325,8 @@ public class TetrisManager : MonoBehaviour
     {
         if (!gameover)
         {
+            aud.PlayOneShot(soundLose, Random.Range(0.8f, 1.2f));
+
             gameover = true;            // 遊戲結束
             StopAllCoroutines();        // 停止所有協程
             end.SetActive(true);        // 顯示結束畫面
@@ -441,12 +446,15 @@ public class TetrisManager : MonoBehaviour
             float bottom = -195;            // 最底層的位置
             float step = 30;                // 每層的間距
 
-            // 查詢有幾顆位置在 -195 +- 5的範圍
+            // 查詢有幾顆位置在 -195 +- 5的範圍  - 避免誤差值
             var small = rectSmall.Where(x => x.anchoredPosition.y >= bottom + step * i - 5 && x.anchoredPosition.y <= bottom + step * i + 5);
             // print(small.ToArray().Length);
 
+            // 消除
             if (small.ToArray().Length == 16)
             {
+                aud.PlayOneShot(soundfall, Random.Range(0.8f, 1.2f));
+
                 yield return StartCoroutine(shine(small.ToArray()));     // 開始閃爍
                 destoryRow[i] = true;                                    // 紀錄要刪除的列數
                 AddScore(1000);
