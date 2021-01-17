@@ -28,6 +28,45 @@ public class Tetris : MonoBehaviour
     public float smallcube = 0.5f;
 
     #region 事件
+
+    private void SettingLength()
+    {
+        #region 判定牆壁與地板
+        //圖示輔助線  的  顏色
+        Gizmos.color = Color.red;
+
+        //將浮點數 轉變為 整數 - 要把小數點去掉，就在類型前加(int)
+        int z = (int)transform.eulerAngles.z;
+
+        if (z == 0 || z == 180)
+        {
+            //儲存目前長度
+            cube = cube0;
+
+            //下側線條
+            cubeDown = cube90;
+
+
+            //垂直時偵測感應牆壁的線條
+            cubeRotateR = cubeRotate0r;
+            cubeRotateL = cubeRotate0l;
+        }
+        else if (z == 90 || z == 270)
+        {
+            // 儲存目前長度
+            //右側如下
+            cube = cube90;
+
+            //下側線條
+            cubeDown = cube0;
+
+            // 水平時偵測牆壁感應的線條
+            cubeRotateR = cubeRotate90r;
+            cubeRotateL = cubeRotate90l;
+        }
+        #endregion
+    }
+
     /// <summary>
     /// 紀錄目前射線長度
     /// </summary>
@@ -131,6 +170,7 @@ public class Tetris : MonoBehaviour
 
     private void Update()
     {
+        SettingLength();
         CheckWall();
         CheckBottom();
         CheckLeftAndRight();
